@@ -194,7 +194,50 @@
         <h2 id="register-title">Regisztráció</h2>
         <p>A belépés ingyenes. A regisztráció csak azért kell, hogy tudjuk, hányan jöttök — székből, borból és sajtból is annyi legyen, amennyi kell.</p>
       </div>
-      <span class="btn is-disabled" aria-disabled="true">A regisztráció hamarosan indul</span>
+      <form class="reg-form" id="reg-form" novalidate data-contact="kapcsolat@svk.bme.hu" data-closes="2026-11-03T17:00:00Z">
+        <div class="field">
+          <label for="reg-email">E-mail-cím <span aria-hidden="true">*</span></label>
+          <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-describedby="reg-email-err">
+          <p class="field-error" id="reg-email-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="reg-name">Név <span aria-hidden="true">*</span></label>
+          <input id="reg-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="reg-name-err">
+          <p class="field-error" id="reg-name-err" hidden></p>
+        </div>
+        <fieldset class="field field-wide">
+          <legend>Hol tanulsz? <span class="opt">(nem kötelező)</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="study" value="bme-vik"> BME VIK</label>
+            <label class="choice"><input type="radio" name="study" value="other" aria-controls="reg-study-other-wrap"> Máshol</label>
+          </div>
+          <div class="study-other" id="reg-study-other-wrap" hidden>
+            <label class="visually-hidden" for="reg-study-other">Hol tanulsz?</label>
+            <input id="reg-study-other" name="study_other" type="text" maxlength="100" placeholder="Pl. BME GPK, ELTE IK, Óbudai Egyetem…" aria-describedby="reg-study-other-err">
+            <p class="field-error" id="reg-study-other-err" hidden></p>
+          </div>
+        </fieldset>
+        <div class="field field-wide check">
+          <input id="reg-gdpr" name="gdpr" type="checkbox" required aria-describedby="reg-gdpr-err">
+          <label for="reg-gdpr">Elolvastam és elfogadom az <a href="adatkezeles.html" target="_blank">adatkezelési tájékoztatót</a>. <span aria-hidden="true">*</span></label>
+          <p class="field-error" id="reg-gdpr-err" hidden></p>
+        </div>
+        <div class="field field-wide check">
+          <input id="reg-photo" name="photo" type="checkbox" required aria-describedby="reg-photo-err">
+          <label for="reg-photo">Tudomásul veszem, hogy a rendezvényen fotók és videók készülnek, amelyek az SVK felületein megjelenhetnek. <span aria-hidden="true">*</span></label>
+          <p class="field-error" id="reg-photo-err" hidden></p>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="reg-website">Weboldal (hagyd üresen)</label>
+          <input id="reg-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="field-wide reg-submit">
+          <button class="btn" type="submit">Regisztrálok <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          <p class="reg-note">A *-gal jelölt mezők kötelezők. Az adataidat csak a MeetUp szervezéséhez használjuk, és a rendezvényt követően töröljük.</p>
+        </div>
+        <p class="reg-status" id="reg-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+      </form>
+      <noscript><p class="reg-status is-error">A regisztrációhoz JavaScript kell. Ha nem tudod bekapcsolni, írj nekünk: <a href="mailto:kapcsolat@svk.bme.hu">kapcsolat@svk.bme.hu</a>.</p></noscript>
     </section>
 
     <section class="organizer reveal" aria-label="Szervező">

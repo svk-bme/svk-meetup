@@ -419,6 +419,129 @@
     els.forEach((e) => io.observe(e));
   }
 
+  /* ---------- registration ---------- */
+
+  function initRegister() {
+    const form = document.getElementById("reg-form");
+    if (!form) return;
+    const status = document.getElementById("reg-status");
+    const button = form.querySelector("button[type=submit]");
+    const contact = form.dataset.contact;
+    const shownAt = Date.now();
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Status line; with withContact it ends in "írj nekünk: <mailto>".
+    const say = (kind, msg, withContact) => {
+      status.replaceChildren(msg);
+      if (withContact) {
+        const a = document.createElement("a");
+        a.href = "mailto:" + contact;
+        a.textContent = contact;
+        status.append(" Ha nem sikerül, írj nekünk: ", a, ".");
+      }
+      status.className = "reg-status is-" + kind;
+      status.hidden = false;
+      status.focus();
+    };
+    const hideFields = () => [...form.children].forEach((el) => { if (el !== status) el.hidden = true; });
+    const done = (msg) => { hideFields(); say("ok", msg); };
+
+    if (Date.now() >= Date.parse(form.dataset.closes)) {
+      hideFields();
+      status.textContent = "A regisztráció lezárult. Köszönjük az érdeklődést!";
+      status.className = "reg-status is-error";
+      status.hidden = false;
+      return;
+    }
+
+    const fieldError = (name, msg) => {
+      const input = form.elements[name];
+      const err = document.getElementById(input.id + "-err");
+      input.setAttribute("aria-invalid", msg ? "true" : "false");
+      err.textContent = msg || "";
+      err.hidden = !msg;
+      return !msg;
+    };
+
+    const rules = {
+      email: (v) => (!v.trim() ? "Add meg az e-mail-címed." : EMAIL_RE.test(v.trim()) ? "" : "Ez nem tűnik érvényes e-mail-címnek."),
+      name: (v) => (v.trim().length < 2 ? "Add meg a neved." : ""),
+      study_other: (v) => (form.elements.study.value === "other" && v.trim().length < 2 ? "Írd be, hol tanulsz." : ""),
+      gdpr: (_, el) => (el.checked ? "" : "Az adatkezelési tájékoztató elfogadása kötelező."),
+      photo: (_, el) => (el.checked ? "" : "A fotózásról szóló tájékoztatás tudomásulvétele kötelező."),
+    };
+    const check = (name) => fieldError(name, rules[name](form.elements[name].value, form.elements[name]));
+
+    const validate = () => {
+      const bad = Object.keys(rules).filter((name) => !check(name));
+      if (bad.length) form.elements[bad[0]].focus();
+      return !bad.length;
+    };
+
+    // Re-check a flagged field while it is being fixed.
+    const recheck = (e) => {
+      const name = e.target.name;
+      if (rules[name] && e.target.getAttribute("aria-invalid") === "true") check(name);
+    };
+    form.addEventListener("input", recheck);
+    form.addEventListener("change", recheck);
+
+    // "Máshol" reveals a free-text field for the school.
+    const otherWrap = document.getElementById("reg-study-other-wrap");
+    form.addEventListener("change", (e) => {
+      if (e.target.name !== "study") return;
+      const other = e.target.value === "other";
+      otherWrap.hidden = !other;
+      if (other) form.elements.study_other.focus();
+      else fieldError("study_other", "");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.hidden = true;
+      if (!validate()) return;
+
+      const f = form.elements;
+      const payload = {
+        email: f.email.value.trim(),
+        name: f.name.value.trim(),
+        study: f.study.value || "",
+        study_other: f.study.value === "other" ? f.study_other.value.trim() : "",
+        gdpr: f.gdpr.checked,
+        photo: f.photo.checked,
+        website: f.website.value,
+        t: shownAt,
+      };
+
+      button.disabled = true;
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => null);
+        if (res.ok && data && data.ok) {
+          done(data.already
+            ? "Ezzel az e-mail-címmel már regisztráltál, nincs további teendőd. Találkozunk november 3-án!"
+            : "Köszönjük, sikeresen regisztráltál! Találkozunk november 3-án 17:00-kor az FNT-ben.");
+          return;
+        }
+        if (data && rules[data.field]) {
+          if (data.field === "study_other") otherWrap.hidden = false;
+          fieldError(data.field, data.error);
+          f[data.field].focus();
+        } else {
+          say("error", (data && data.error) || "Valami hiba történt, nem sikerült a regisztráció.", res.status >= 500 || !data);
+        }
+      } catch {
+        say("error", "Nem értük el a szervert. Ellenőrizd a netkapcsolatot, és próbáld újra.", true);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+
   /* ---------- boot ---------- */
 
   initThemeSwitch();
@@ -433,4 +556,5 @@
   initMap();
   initPager();
   initReveal();
+  initRegister();
 })();
