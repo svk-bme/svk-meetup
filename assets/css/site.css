@@ -100,10 +100,9 @@ img, svg, canvas { display: block; max-width: 100%; }
 
 /* ---------- hero: what / when / where, then the form ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  grid-template-areas: "info reg" "prize reg"; gap: 24px clamp(28px, 5cqi, 64px); align-items: start;
-  padding: clamp(18px, 4cqi, 52px) 0 clamp(32px, 5cqi, 64px); }
+  grid-template-areas: "info reg" "prize reg"; gap: 22px clamp(28px, 5cqi, 64px); align-items: start;
+  padding: clamp(18px, 4cqi, 52px) 0 clamp(8px, 1.2cqi, 16px); }
 .hero-info { grid-area: info; }
-.register { grid-area: reg; }
 .prize { grid-area: prize; }
 
 .kicker { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .14em;
@@ -112,10 +111,26 @@ img, svg, canvas { display: block; max-width: 100%; }
   line-height: 1.24; letter-spacing: -.045em; text-wrap: balance; }
 .hero h1 mark { background: var(--sarga); color: var(--dk); padding: 0 .12em; border-radius: .14em; }
 .lead { margin-top: 16px; max-width: 44ch; font-size: clamp(15px, 1.5cqi, 17px); line-height: 1.55; color: var(--ink2); font-weight: 500; }
-.facts { display: grid; gap: 12px; margin-top: 24px; }
+.facts { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 12px 28px; margin-top: 22px; }
+/* date | time on one row, the long ones (place, free entry) full width */
+.facts li:nth-child(n+3) { grid-column: 1 / -1; }
 .facts li { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 1.35; color: var(--ink); }
 .facts svg { width: 22px; height: 22px; flex: none; color: var(--pinkT); }
 .facts b { font-weight: 700; }
+/* Támogatók: a regisztráció ALATT, ugyanabban az oszlopban (.reg-col).  Egy
+   fehér kártya, mindkét témában fehér, mert a Datapao piros logója sötét
+   háttéren veszítene a kontrasztjából.  Több támogató = több <li>, a logók
+   egymás alá kerülnek; a bal oszlop (nyereményjáték) ettől nem mozdul. */
+.reg-col { grid-area: reg; display: grid; gap: 14px; align-content: start; }
+.sponsors { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 20px;
+  padding: 14px 22px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 10px 26px -18px rgba(var(--sh), .7); }
+.sponsors h2 { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: #4A4280; line-height: var(--lh-mono); }
+.sponsors ul { display: grid; justify-items: center; gap: 12px; }
+.sponsor { display: block; border-radius: 8px; transition: transform .15s ease; }
+.sponsor img { display: block; height: 28px; width: auto; }
+.sponsor:hover { transform: translateY(-1px); }
+.sponsor:focus-visible { outline: 3px solid var(--act); outline-offset: 4px; }
 
 /* ---------- registration card ---------- */
 .register { position: relative; padding: clamp(20px, 2.6cqi, 30px); background: var(--card); border: 1.5px solid var(--cardline);
@@ -157,22 +172,40 @@ img, svg, canvas { display: block; max-width: 100%; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .register [hidden] { display: none; }
 
-/* ---------- giveaway: a visible placeholder until it's announced ---------- */
-.prize { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 20px;
-  background: var(--card); border: 1.5px solid var(--cardline); }
-.prize[data-soon] { border-style: dashed; border-color: var(--pinkT); }
-.prize-icon { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
-  border: 1.5px solid var(--cardline); color: var(--pinkT); }
-.prize-icon svg { width: 26px; height: 26px; }
-.prize h2 { font-family: "Unbounded", sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.03em; line-height: var(--lh-round); }
-.prize p { font-size: 14.5px; line-height: 1.5; color: var(--ink2); margin-top: 3px; }
-.prize .prize-tag { display: none; }
-.prize[data-soon] .prize-tag { display: flex; align-items: center; gap: 7px; margin: 0 0 4px; font-family: "JetBrains Mono", monospace;
-  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--pinkT); }
+/* ---------- giveaway: in the hero's left column, so it is on the first screen.
+   Transparent cut-outs, no discs: a soft glow in the prize's colour sits behind
+   each (black products would vanish on the dark card without it). ---------- */
+.prize { padding: 16px 18px 14px; border-radius: 20px; background: var(--card); border: 1.5px solid var(--cardline); text-align: center; }
+.prize-head { display: grid; justify-items: center; gap: 2px; }
+.prize h2 { font-family: "Unbounded", sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: -.035em; line-height: var(--lh-round); }
+.prize-head > p:last-child { font-size: 14px; line-height: 1.45; color: var(--ink2); }
+.prize .prize-tag { display: flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", monospace;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; line-height: var(--lh-mono); text-transform: uppercase; color: var(--pinkT); }
 .prize-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+/* Three EQUAL prizes, three winners: each sits on its own tile, same size, no
+   "main"/"smaller" label - a ranking made the third one look cheap (Norbi). */
+.prize-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 10px; margin-top: 10px;
+  container-type: inline-size; }
+.pz { display: grid; grid-template-rows: auto 1fr; justify-items: center; align-items: center; min-width: 0;
+  padding: 6px 6px 10px; border-radius: 14px; background: var(--tile); border: 1.5px solid var(--tileline); }
+/* one height for all three, so the captions line up whatever the column width */
+.pz-img { position: relative; display: block; width: 100%; height: min(28cqi, 160px); margin-bottom: 4px;
+  background: radial-gradient(closest-side, var(--glow) 0, transparent 100%); }
+.pz-img img { position: absolute; inset: 7%; width: 86%; height: 86%; object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgba(23,18,58,.25)); }
+.c-pink.pz { --glow: rgba(255,62,134,.24); --tile: rgba(255,62,134,.07); --tileline: rgba(255,62,134,.32); }
+.c-yellow.pz { --glow: rgba(255,201,60,.34); --tile: rgba(255,201,60,.10); --tileline: rgba(214,160,20,.45); }
+.c-lilac.pz { --glow: rgba(150,130,255,.26); --tile: rgba(150,130,255,.09); --tileline: rgba(123,92,255,.35); }
+:root[data-theme="dark"] .pz-img { background: radial-gradient(closest-side, rgba(255,255,255,.62) 0, var(--glow) 55%, transparent 100%); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pz-img { background: radial-gradient(closest-side, rgba(255,255,255,.62) 0, var(--glow) 55%, transparent 100%); }
+}
+.pz b { font-size: 13.5px; line-height: 1.3; }
 
 /* ---------- speakers + schedule ---------- */
-.block { padding: clamp(26px, 4cqi, 44px) 0 0; scroll-margin-top: 12px; }
+/* positioned + z-index: the hero's blobs are positioned too, and without this
+   they painted OVER the speaker cards (the "see-through" middle two) */
+.block { position: relative; z-index: 1; padding: clamp(26px, 4cqi, 44px) 0 0; scroll-margin-top: 12px; }
 .block h2 { font-family: "Unbounded", sans-serif; font-weight: 700; font-size: clamp(1.25rem, 2.6cqi, 1.6rem); letter-spacing: -.035em;
   line-height: var(--lh-round); margin-bottom: 16px; }
 .c-yellow { --dot: #FFC93C; } .c-mint { --dot: #00CFA6; } .c-pink { --dot: #FF3E86; } .c-lilac { --dot: #B9AEFF; }
@@ -185,10 +218,10 @@ img, svg, canvas { display: block; max-width: 100%; }
 .sp-n { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--ink3); }
 .speaker b { font-size: 14px; line-height: 1.3; }
 
-.schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(6, auto); grid-auto-flow: column;
+.schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); grid-auto-flow: column;
   column-gap: clamp(20px, 4cqi, 48px); padding: 8px clamp(16px, 2.6cqi, 28px); border-radius: 20px; background: var(--card); border: 1.5px solid var(--cardline); }
 .schedule li { display: flex; align-items: baseline; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--soft); font-size: 15px; line-height: 1.4; }
-.schedule li:nth-child(6), .schedule li:last-child { border-bottom: 0; }
+.schedule li:nth-child(7), .schedule li:last-child { border-bottom: 0; }
 .schedule .dots, .schedule .then { flex: none; width: 3.2em; display: flex; gap: 3px; align-items: center; }
 .schedule .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
 .schedule .then { color: var(--pinkT); font-weight: 700; }
@@ -213,7 +246,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 
 /* ---------- responsive ---------- */
 @container (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; grid-template-areas: "info" "reg" "prize"; }
+  .hero { grid-template-columns: 1fr; grid-template-areas: "info" "prize" "reg"; }
   .blob-pink { width: 70%; right: -20%; top: 30%; }
   .blob-green { width: 55%; left: -18%; bottom: 2%; }
   .speakers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -222,10 +255,10 @@ img, svg, canvas { display: block; max-width: 100%; }
   .nav-links { display: none; }
   .theme-switch { margin-left: auto; }
   .hero { gap: 20px; padding-top: 8px; }
-  .facts { gap: 10px; margin-top: 18px; }
+  .facts { grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
   .facts li { font-size: 15px; }
   .schedule { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
-  .schedule li:nth-child(6) { border-bottom: 1px solid var(--soft); }
+  .schedule li:nth-child(7) { border-bottom: 1px solid var(--soft); }
   .footer-logos { gap: 14px; }
   .footer-logos svg { height: 32px; }
 }

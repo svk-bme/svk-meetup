@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>XX. Schönherz MeetUp – Kreatív mérnöki gondolkodás ereje</title>
-  <meta name="description" content="2026. november 3., kedd, 17:30, FNT, BME Schönherz Kollégium. Négy előadás, utána borkóstoló és beszélgetés. A belépés ingyenes, regisztrációhoz kötött.">
+  <meta name="description" content="2026. november 3., kedd, 17:30, FNT, BME Schönherz Kollégium. Négy előadás, nyereményjáték, utána borkóstoló és beszélgetés. A belépés ingyenes, regisztrációhoz kötött.">
   <meta name="theme-color" content="#E9E4FF" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#130F2C" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://meetup.svk.bme.hu/">
@@ -15,7 +15,7 @@
   <meta property="og:locale" content="hu_HU">
   <meta property="og:site_name" content="Schönherz MeetUp">
   <meta property="og:title" content="XX. Schönherz MeetUp – Kreatív mérnöki gondolkodás ereje">
-  <meta property="og:description" content="November 3., kedd, 17:30 · FNT, BME Schönherz Kollégium · A belépés ingyenes.">
+  <meta property="og:description" content="November 3., kedd, 17:30 · FNT, BME Schönherz Kollégium · Nyereményjáték · A belépés ingyenes.">
   <meta property="og:url" content="https://meetup.svk.bme.hu/">
   <meta property="og:image" content="https://meetup.svk.bme.hu/assets/img/og.png">
   <meta property="og:image:width" content="1200">
@@ -99,6 +99,26 @@
         </ul>
       </div>
 
+      <!-- NYEREMÉNYJÁTÉK — élő, a hero bal oszlopában: betöltéskor azonnal látszik.
+           A képek átlátszók, logó/felirat nélkül (probak/nyeremeny-kepek.md a
+           kreativ/ mappában).  A feltételek szövege még a szervezőktől jön. -->
+      <aside class="prize" id="nyeremeny" aria-labelledby="prize-title">
+        <div class="prize-head">
+          <p class="prize-tag">Már elérhető</p>
+          <h2 id="prize-title">Nyereményjáték</h2>
+          <p>A nyerteseket a helyszínen hirdetjük ki, <time datetime="2026-11-03T20:45+01:00">20:45</time> körül.</p>
+        </div>
+        <ul class="prize-list">
+          <li class="pz c-pink"><span class="pz-img"><img src="assets/img/nyeremeny-fejhallgato.webp" width="720" height="720" alt="Fekete-piros gamer fejhallgató mikrofonnal" decoding="async"></span><b>Gamer fejhallgató</b></li>
+          <li class="pz c-yellow"><span class="pz-img"><img src="assets/img/nyeremeny-urhajo.webp" width="720" height="720" alt="Szürke LEGO űrhajómodell fekete talpon" decoding="async"></span><b>LEGO készlet</b></li>
+          <li class="pz c-lilac"><span class="pz-img"><img src="assets/img/nyeremeny-hangszoro.webp" width="720" height="720" alt="Fekete Xiaomi hordozható hangszóró narancs pánttal" decoding="async"></span><b>Xiaomi hangszóró</b></li>
+        </ul>
+      </aside>
+
+      <!-- Jobb oszlop: regisztráció, alatta a támogatók. Új támogató = új <li> a
+           listában (és a felirat „Támogatóink”); a logók egymás alá kerülnek, a
+           bal oszlop (nyereményjáték) nem mozdul. -->
+      <div class="reg-col">
       <section class="register" id="regisztracio" aria-labelledby="register-title">
         <h2 id="register-title">Regisztráció</h2>
         <p class="reg-lead">Ingyenes, egy perc az egész.</p>
@@ -147,46 +167,45 @@
       </form>
         <noscript><p class="reg-status is-error">A regisztrációhoz JavaScript kell. Ha nem tudod bekapcsolni, írj nekünk: <a href="mailto:kapcsolat@svk.bme.hu">kapcsolat@svk.bme.hu</a>.</p></noscript>
       </section>
-
-      <!-- NYEREMÉNYJÁTÉK — helykitöltő.  Ha kész: írd át a címet és a szöveget
-           (mi a nyeremény, hogyan lehet nyerni), és töröld a data-soon
-           attribútumot; akkor a keret folytonos lesz, a „Hamarosan” eltűnik. -->
-      <aside class="prize" id="nyeremeny" data-soon aria-labelledby="prize-title">
-        <span class="prize-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5c-1.5-3.5-5.5-4-5.5-1.5S10 8.5 12 8.5zM12 8.5c1.5-3.5 5.5-4 5.5-1.5S14 8.5 12 8.5z"/></svg></span>
-        <div>
-          <p class="prize-tag">Hamarosan</p>
-          <h2 id="prize-title">Nyereményjáték</h2>
-          <p>A részleteket a következő napokban itt jelentjük be.</p>
-        </div>
+      <aside class="sponsors" aria-labelledby="sponsors-title">
+        <h2 id="sponsors-title">Támogatónk</h2>
+        <ul>
+          <li><a class="sponsor" href="https://datapao.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/datapao.webp" width="480" height="124" alt="Datapao" decoding="async"></a></li>
+        </ul>
       </aside>
+      </div>
+
     </section>
 
     <section class="block" id="eloadok" aria-labelledby="speakers-title">
       <h2 id="speakers-title">Előadók</h2>
       <ol class="speakers">
-          <li class="speaker c-yellow"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">1. előadás · <time datetime="2026-11-03T18:05+01:00">18:05</time></span><b>Hamarosan bejelentjük</b></span></li>
-          <li class="speaker c-mint"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">2. előadás · <time datetime="2026-11-03T18:35+01:00">18:35</time></span><b>Hamarosan bejelentjük</b></span></li>
-          <li class="speaker c-pink"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">3. előadás · <time datetime="2026-11-03T19:15+01:00">19:15</time></span><b>Hamarosan bejelentjük</b></span></li>
-          <li class="speaker c-lilac"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">4. előadás · <time datetime="2026-11-03T19:45+01:00">19:45</time></span><b>Hamarosan bejelentjük</b></span></li>
+          <li class="speaker c-yellow"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">1. előadás · <time datetime="2026-11-03T18:15+01:00">18:15</time></span><b>Hamarosan bejelentjük</b></span></li>
+          <li class="speaker c-mint"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">2. előadás · <time datetime="2026-11-03T18:45+01:00">18:45</time></span><b>Hamarosan bejelentjük</b></span></li>
+          <li class="speaker c-pink"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">3. előadás · <time datetime="2026-11-03T19:45+01:00">19:45</time></span><b>Hamarosan bejelentjük</b></span></li>
+          <li class="speaker c-lilac"><span class="avatar" aria-hidden="true">?</span><span class="sp-text"><span class="sp-n">4. előadás · <time datetime="2026-11-03T20:15+01:00">20:15</time></span><b>Hamarosan bejelentjük</b></span></li>
       </ol>
     </section>
 
     <section class="block" id="program" aria-labelledby="program-title">
       <h2 id="program-title">Az este menete</h2>
       <ol class="schedule">
-          <li><time datetime="2026-11-03T17:30+01:00">17:30</time><span><b>Kezdés</b></span></li>
-          <li><time datetime="2026-11-03T18:00+01:00">18:00</time><span><b>Megnyitó</b></span></li>
-          <li class="talk c-yellow"><time datetime="2026-11-03T18:05+01:00">18:05</time><span><b>Első előadás</b></span></li>
-          <li class="talk c-mint"><time datetime="2026-11-03T18:35+01:00">18:35</time><span><b>Második előadás</b></span></li>
-          <li class="brk"><time datetime="2026-11-03T19:05+01:00">19:05</time><span><b>Szünet</b></span></li>
-          <li class="talk c-pink"><time datetime="2026-11-03T19:15+01:00">19:15</time><span><b>Harmadik előadás</b></span></li>
-          <li class="talk c-lilac"><time datetime="2026-11-03T19:45+01:00">19:45</time><span><b>Negyedik előadás</b></span></li>
-          <li><time datetime="2026-11-03T20:15+01:00">20:15</time><span><b>Záró gondolatok</b></span></li>
-          <li><time datetime="2026-11-03T20:30+01:00">20:30</time><span><b>Borkóstoló</b></span></li>
-          <li><time datetime="2026-11-03T21:30+01:00">21:30</time><span><b>Beszélgetés</b></span></li>
+          <li><time datetime="2026-11-03T17:30+01:00">17:30</time><span><b>Kapunyitás</b></span></li>
+          <li><time datetime="2026-11-03T18:00+01:00">18:00</time><span><b>Nyitó beszéd</b></span></li>
+          <li><time datetime="2026-11-03T18:05+01:00">18:05</time><span><b>Államtitkári megnyitó</b></span></li>
+          <li><time datetime="2026-11-03T18:10+01:00">18:10</time><span><b>Dékáni köszöntő</b></span></li>
+          <li class="talk c-yellow"><time datetime="2026-11-03T18:15+01:00">18:15</time><span><b>Első előadás</b></span></li>
+          <li class="talk c-mint"><time datetime="2026-11-03T18:45+01:00">18:45</time><span><b>Második előadás</b></span></li>
+          <li class="brk"><time datetime="2026-11-03T19:15+01:00">19:15</time><span><b>Szünet</b></span></li>
+          <li class="talk c-pink"><time datetime="2026-11-03T19:45+01:00">19:45</time><span><b>Harmadik előadás</b></span></li>
+          <li class="talk c-lilac"><time datetime="2026-11-03T20:15+01:00">20:15</time><span><b>Negyedik előadás</b></span></li>
+          <li><time datetime="2026-11-03T20:45+01:00">20:45</time><span><b>Nyereményjáték és záró gondolatok</b></span></li>
+          <li class="brk"><time datetime="2026-11-03T21:00+01:00">21:00</time><span><b>Szünet</b></span></li>
+          <li><time datetime="2026-11-03T21:15+01:00">21:15</time><span><b>Borkóstoló</b></span></li>
+          <li><time datetime="2026-11-03T22:30+01:00">22:30</time><span><b>Beszélgetés</b></span></li>
           <li><time datetime="2026-11-04T00:00+01:00">00:00</time><span><b>Zárás</b></span></li>
       </ol>
-      <p class="note">Minden előadás 20 perc, utána 5 perc kérdés. Az időpontok néhány percet még változhatnak.</p>
+      <p class="note">Minden előadás fél óra, a kérdésekkel együtt. Az időpontok néhány percet még változhatnak.</p>
     </section>
   </main>
 

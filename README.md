@@ -75,3 +75,12 @@ Az adatkezelési tájékoztató ezt a dátumot ígéri.
 A betűtípusok (Unbounded, DM Sans, JetBrains Mono, Caveat) a SIL Open Font
 License 1.1 alatt állnak, a licencszövegek az `assets/fonts/` mappában.
 Az SVK és a Schönherz logó a szervezők tulajdona.
+
+## Támogató (2026-10-27)
+A Datapao a MeetUp támogatója, ezt a „Támogatónk” kártya mutatja a regisztráció ALATT, ugyanabban
+az oszlopban (`.reg-col` > `.sponsors`, `assets/img/datapao.webp` – a cégtől kapott HIVATALOS piros
+logó, fehér alapon mindkét témában). Új támogató: új `<li>` a `.sponsors ul`-ba, és a felirat
+„Támogatóink” – a logók egymás alá kerülnek, a bal oszlop (nyereményjáték) nem mozdul.
+A program 18:00-s sora „Nyitó beszéd” (2026-10-27: kapuzárás NINCS).
+Norbi kérése: CSAK a támogatás látszik — azt, hogy tőlük ki ad elő, NEM írjuk ki. A többi cég
+és az előadók neve továbbra sem kerül a lapra.
