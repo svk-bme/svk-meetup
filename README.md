@@ -81,6 +81,13 @@ A Datapao a MeetUp támogatója, ezt a „Támogatónk” kártya mutatja a regi
 az oszlopban (`.reg-col` > `.sponsors`, `assets/img/datapao.webp` – a cégtől kapott HIVATALOS piros
 logó, fehér alapon mindkét témában). Új támogató: új `<li>` a `.sponsors ul`-ba, és a felirat
 „Támogatóink” – a logók egymás alá kerülnek, a bal oszlop (nyereményjáték) nem mozdul.
+2026-10-30: „Támogatóink”: Datapao + Euro One · HPE (`assets/img/euro-one-hpe.svg`, a kapott
+eredeti SVG; forrás: meetup-arculat/forrasanyag/logok/). A BME AUT tanszék, NEM támogató – nincs a listán.
 A program 18:00-s sora „Nyitó beszéd” (2026-10-27: kapuzárás NINCS).
-Norbi kérése: CSAK a támogatás látszik — azt, hogy tőlük ki ad elő, NEM írjuk ki. A többi cég
-és az előadók neve továbbra sem kerül a lapra.
+## Előadók (2026-10-30)
+Norbi jóváhagyta, a korábbi „nevet nem írunk ki” szabály ezzel MEGSZŰNT. Az Előadók kártyáin
+név + szerep, a programban a név a sor alatt/mellett (`.sp-role`, `.schedule small`):
+1. 18:15 Gulyás Máté – Datapao, alapító és CEO
+2. 18:45 Dr. Forstner Bertalan – BME AUT, tanszékvezető-helyettes
+3. 19:45 Nepp Levente – Euro One · HPE
+4. 20:15 még nincs bejelentve („Hamarosan bejelentjük”)

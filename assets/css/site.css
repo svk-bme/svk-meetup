@@ -120,15 +120,28 @@ img, svg, canvas { display: block; max-width: 100%; }
 /* Támogatók: a regisztráció ALATT, ugyanabban az oszlopban (.reg-col).  Egy
    fehér kártya, mindkét témában fehér, mert a Datapao piros logója sötét
    háttéren veszítene a kontrasztjából.  Több támogató = több <li>, a logók
-   egymás alá kerülnek; a bal oszlop (nyereményjáték) ettől nem mozdul. */
+   egymás mellé kerülnek (sorba törve, ha nem férnek); a bal oszlop
+   (nyereményjáték) ettől nem mozdul.  Felül arany felirat, két oldalán
+   elhalványuló arany vonallal; alatta a logók, vékony elválasztóval. */
 .reg-col { grid-area: reg; display: grid; gap: 14px; align-content: start; }
-.sponsors { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 20px;
-  padding: 14px 22px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 10px 26px -18px rgba(var(--sh), .7); }
-.sponsors h2 { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: #4A4280; line-height: var(--lh-mono); }
-.sponsors ul { display: grid; justify-items: center; gap: 12px; }
-.sponsor { display: block; border-radius: 8px; transition: transform .15s ease; }
-.sponsor img { display: block; height: 28px; width: auto; }
+.sponsors { display: grid; justify-items: center; gap: 10px; padding: 12px 20px 15px;
+  background: #FFFFFF; border: 1px solid rgba(190, 140, 40, .32); border-radius: 16px;
+  box-shadow: 0 10px 26px -18px rgba(var(--sh), .7); }
+.sponsors h2 { display: flex; align-items: center; gap: 12px; width: 100%;
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .24em;
+  text-transform: uppercase; line-height: var(--lh-mono); color: #8F640C; }
+.sponsors h2::before, .sponsors h2::after { content: ""; flex: 1; height: 1px; }
+.sponsors h2::before { background: linear-gradient(90deg, rgba(190, 140, 40, 0), rgba(190, 140, 40, .55)); }
+.sponsors h2::after { background: linear-gradient(90deg, rgba(190, 140, 40, .55), rgba(190, 140, 40, 0)); }
+.sponsors ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; row-gap: 10px; }
+.sponsors li { display: flex; align-items: center; }
+/* elvalaszto: arany potty, nem vonal - az EO|HPE logoban mar van egy fuggoleges vonal */
+.sponsors li + li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; margin: 0 20px;
+  background: rgba(190, 140, 40, .7); }
+.sponsor { display: block; border-radius: 6px; transition: transform .15s ease; }
+.sponsor img { display: block; height: 24px; width: auto; }
+/* az EO|HPE lockup 5,9:1 – laposabb, mint a Datapao (3,9:1); kisebb magassaggal azonos sulyu */
+.sp-eohpe img { height: 18px; }
 .sponsor:hover { transform: translateY(-1px); }
 .sponsor:focus-visible { outline: 3px solid var(--act); outline-offset: 4px; }
 
@@ -212,11 +225,15 @@ img, svg, canvas { display: block; max-width: 100%; }
 
 .speakers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .speaker { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 18px; background: var(--card); border: 1.5px solid var(--cardline); }
-.avatar { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--dot); color: var(--dk);
-  font-family: "Unbounded", sans-serif; font-weight: 700; font-size: 18px; }
+.avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--dot); color: var(--dk);
+  font-family: "Unbounded", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -.03em; }
+/* fotos eloado: a kartya szine gyuru a kep korul (a ? / monogram korong helyett) */
+.avatar.ph { padding: 3px; }
+.avatar.ph img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: var(--card); }
 .sp-text { display: grid; gap: 2px; min-width: 0; }
 .sp-n { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--ink3); }
 .speaker b { font-size: 14px; line-height: 1.3; }
+.sp-role { font-size: 13px; line-height: 1.35; color: var(--ink2); }
 
 .schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); grid-auto-flow: column;
   column-gap: clamp(20px, 4cqi, 48px); padding: 8px clamp(16px, 2.6cqi, 28px); border-radius: 20px; background: var(--card); border: 1.5px solid var(--cardline); }
@@ -265,7 +282,8 @@ img, svg, canvas { display: block; max-width: 100%; }
 @container (max-width: 520px) {
   /* 2x2 on phones: four full-width cards pushed the schedule a screen down */
   .speaker { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
-  .avatar { width: 38px; height: 38px; font-size: 15px; }
+  .avatar { width: 46px; height: 46px; font-size: 13px; }
+  .schedule small { display: block; margin: 2px 0 0; }
   .speaker b { font-size: 13.5px; }
 }
 
