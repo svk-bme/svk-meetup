@@ -90,4 +90,4 @@ név + szerep, a programban a név a sor alatt/mellett (`.sp-role`, `.schedule s
 1. 18:15 Gulyás Máté – Datapao, alapító és CEO
 2. 18:45 Dr. Forstner Bertalan – BME AUT, tanszékvezető-helyettes
 3. 19:45 Nepp Levente – Euro One · HPE
-4. 20:15 még nincs bejelentve („Hamarosan bejelentjük”)
+4. 20:15 Gulyás András – BME TMIT, tudományos főmunkatárs (beosztás: tmit.bme.hu/gulyas.andras). „Dr.” NÉLKÜL: Norbi szerint publikációkban és Teamsen sem használja – ne írjunk ki olyat, amit ő maga nem.
