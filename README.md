@@ -84,10 +84,15 @@ logó, fehér alapon mindkét témában). Új támogató: új `<li>` a `.sponsor
 2026-10-30: „Támogatóink”: Datapao + Euro One · HPE (`assets/img/euro-one-hpe.svg`, a kapott
 eredeti SVG; forrás: meetup-arculat/forrasanyag/logok/). A BME AUT tanszék, NEM támogató – nincs a listán.
 A program 18:00-s sora „Nyitó beszéd” (2026-10-27: kapuzárás NINCS).
+
+## Evosoft-meglepetés (2026-10-31)
+Az Evosoft nem esemény támogató: külön nyereményjáték támogatók, és a nyereményjáték alatt külön „És még egy meglepetés”
+blokkban jelenik meg, nem a `.sponsors` listában. A `assets/img/evosoft-logo-colour.png`
+az evosoft hivatalos oldaláról származó transzparens színes/zöld logó
+([forrás](https://www.evosoft.com/wp-content/uploads/2020/10/Logo_evosoft_flat_coloured_auf_transparent.png)).
 ## Előadók (2026-10-30)
-Norbi jóváhagyta, a korábbi „nevet nem írunk ki” szabály ezzel MEGSZŰNT. Az Előadók kártyáin
-név + szerep, a programban a név a sor alatt/mellett (`.sp-role`, `.schedule small`):
+Az Előadók kártyáin név + szerep, a programban a név a sor alatt/mellett (`.sp-role`, `.schedule small`):
 1. 18:15 Gulyás Máté – Datapao, alapító és CEO
 2. 18:45 Dr. Forstner Bertalan – BME AUT, tanszékvezető-helyettes
 3. 19:45 Nepp Levente – Euro One · HPE
-4. 20:15 Gulyás András – BME TMIT, tudományos főmunkatárs (beosztás: tmit.bme.hu/gulyas.andras). „Dr.” NÉLKÜL: Norbi szerint publikációkban és Teamsen sem használja – ne írjunk ki olyat, amit ő maga nem.
+4. 20:15 Gulyás András – BME TMIT, tudományos főmunkatárs (beosztás: tmit.bme.hu/gulyas.andras)

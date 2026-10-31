@@ -214,11 +214,19 @@ img, svg, canvas { display: block; max-width: 100%; }
   :root:not([data-theme="light"]) .pz-img { background: radial-gradient(closest-side, rgba(255,255,255,.62) 0, var(--glow) 55%, transparent 100%); }
 }
 .pz b { font-size: 13.5px; line-height: 1.3; }
+.prize-extra { display: grid; grid-template-columns: max-content max-content; align-items: center; justify-content: center;
+  gap: 10px; margin: 14px 8px 0; padding: 9px 16px; border-top: 2px solid var(--pinkT);
+  background: linear-gradient(90deg, rgba(255,62,134,.08), rgba(31,216,178,.08)); border-radius: 12px; }
+.prize-extra-tag { font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+  line-height: 1.35; text-align: center; text-transform: uppercase; color: var(--pinkT); }
+.prize-extra > div { width: 195px; text-align: center; }
+.prize-extra-copy { margin-top: 2px; max-width: none; font-size: 16px; line-height: 1.3; color: var(--ink); }
+.prize-extra img { width: 88px; height: auto; max-height: 44px; object-fit: contain; }
 
 /* ---------- speakers + schedule ---------- */
 /* positioned + z-index: the hero's blobs are positioned too, and without this
    they painted OVER the speaker cards (the "see-through" middle two) */
-.block { position: relative; z-index: 1; padding: clamp(26px, 4cqi, 44px) 0 0; scroll-margin-top: 12px; }
+.block { position: relative; z-index: 1; padding: clamp(14px, 2cqi, 22px) 0 0; scroll-margin-top: 12px; }
 .block h2 { font-family: "Unbounded", sans-serif; font-weight: 700; font-size: clamp(1.25rem, 2.6cqi, 1.6rem); letter-spacing: -.035em;
   line-height: var(--lh-round); margin-bottom: 16px; }
 .c-yellow { --dot: #FFC93C; } .c-mint { --dot: #00CFA6; } .c-pink { --dot: #FF3E86; } .c-lilac { --dot: #B9AEFF; }
@@ -234,6 +242,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .sp-n { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--ink3); }
 .speaker b { font-size: 14px; line-height: 1.3; }
 .sp-role { font-size: 13px; line-height: 1.35; color: var(--ink2); }
+.sp-title { margin-top: 4px; font-size: 13px; line-height: 1.35; font-weight: 700; color: var(--pinkT); }
 
 .schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); grid-auto-flow: column;
   column-gap: clamp(20px, 4cqi, 48px); padding: 8px clamp(16px, 2.6cqi, 28px); border-radius: 20px; background: var(--card); border: 1.5px solid var(--cardline); }
@@ -281,6 +290,10 @@ img, svg, canvas { display: block; max-width: 100%; }
 }
 @container (max-width: 520px) {
   /* 2x2 on phones: four full-width cards pushed the schedule a screen down */
+  .prize-extra { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; margin-left: 0; margin-right: 0; padding-left: 10px; padding-right: 10px; }
+  .prize-extra > div { width: auto; }
+  .prize-extra-copy { font-size: 15px; }
+  .prize-extra img { width: 78px; max-height: 40px; }
   .speaker { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
   .avatar { width: 46px; height: 46px; font-size: 13px; }
   .schedule small { display: block; margin: 2px 0 0; }
