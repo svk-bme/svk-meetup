@@ -91,7 +91,7 @@ blokkban jelenik meg, nem a `.sponsors` listában. A `assets/img/evosoft-logo-co
 az evosoft hivatalos oldaláról származó transzparens színes/zöld logó
 ([forrás](https://www.evosoft.com/wp-content/uploads/2020/10/Logo_evosoft_flat_coloured_auf_transparent.png)).
 ## Előadók (2026-10-30)
-Az Előadók kártyáin név + szerep, a programban a név a sor alatt/mellett (`.sp-role`, `.schedule small`):
+Az Előadók kártyáin név + szerep, a programban az előadás sorszáma és az előadó neve jelenik meg (`.sp-role`, `.schedule small`). A konkrét előadáscímeket a letisztult megjelenés miatt nem írjuk ki:
 1. 18:15 Gulyás Máté – Datapao, alapító és CEO
 2. 18:45 Dr. Forstner Bertalan – BME AUT, tanszékvezető-helyettes
 3. 19:45 Nepp Levente – Euro One · HPE
