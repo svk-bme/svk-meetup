@@ -246,14 +246,15 @@ img, svg, canvas { display: block; max-width: 100%; }
 
 .schedule { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); grid-auto-flow: column;
   column-gap: clamp(20px, 4cqi, 48px); padding: 8px clamp(16px, 2.6cqi, 28px); border-radius: 20px; background: var(--card); border: 1.5px solid var(--cardline); }
-.schedule li { display: flex; align-items: baseline; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--soft); font-size: 15px; line-height: 1.4; }
+.schedule li { display: flex; align-items: flex-start; gap: 16px; min-height: 52px; box-sizing: border-box; padding: 13px 0 11px; border-bottom: 1px solid var(--soft); font-size: 15px; line-height: 1.35; }
 .schedule li:nth-child(7), .schedule li:last-child { border-bottom: 0; }
+.schedule li > span { flex: 1; min-width: 0; }
 .schedule .dots, .schedule .then { flex: none; width: 3.2em; display: flex; gap: 3px; align-items: center; }
 .schedule .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
 .schedule .then { color: var(--pinkT); font-weight: 700; }
 .schedule time { flex: none; width: 3.2em; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 14px; color: var(--pinkT);
   font-variant-numeric: tabular-nums; }
-.schedule small { font-size: 13px; color: var(--mute); margin-left: 4px; }
+.schedule small { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.3; color: var(--mute); }
 .schedule .talk b::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--dot); margin-right: 8px; vertical-align: 1px; }
 .schedule .brk { color: var(--mute); }
 .note { margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--ink2); font-weight: 500; }
